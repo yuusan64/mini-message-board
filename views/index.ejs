@@ -15,9 +15,9 @@
             <li>
                 <div>
                     <strong><%= message.name %>:</strong> <%= message.message %> 
-                    <em>(<%= message.added.toLocaleString() %>)</em>
+                    <em>(<%= new Date(message.timestamp).toLocaleString() %>)</em>
                 </div>
-                <a href="/message/<%= index %>" class="button">Open</a>
+                <a href="/message/<%= message.id %>" class="button">Open</a>
             </li>
             <% }); %>
         </ul>
