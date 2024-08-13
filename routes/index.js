@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const pool = require('./db/db');
 
 const messages = [
     {
@@ -16,8 +17,12 @@ const messages = [
 
   //route to display messages
   router.get('/', (req, res)=>{
+    pool.query('SELECT * FROM messages ORDER BY timestamp DESC')
+    .then(result=>{
     res.render('index', { title: "Mini Messageboard", messages });
-  });
+  })
+  .catch(err=>console.error("Error fetching messages:", err));
+});
 
   //display form
   router.get('/new', (req, res)=>{
@@ -26,9 +31,12 @@ const messages = [
 
   //handle form actions
   router.post('/new', (req, res)=>{
-    const {user, text} = req.body;
-    messages.push({text, user, added: new Date()});
-    res.redirect('/');
+    const { name, message } = req.body;
+    pool.query('INSERT INTO messages (name, message) VALUES ($1, $2)', [name, message])
+      .then(() => {
+        res.redirect('/');
+      })
+      .catch(err => console.error("Error inserting message:", err));
   });
   
   //display message details

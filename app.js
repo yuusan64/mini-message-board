@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const path = require("node:path");
+const { body, validationResult } = require("express-validator");
+
 
 const indexRouter = require('./routes/index');
 
