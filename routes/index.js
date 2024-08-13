@@ -2,19 +2,6 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db/db');
 
-const messages = [
-    {
-      text: "Hi there!",
-      user: "Amando",
-      added: new Date()
-    },
-    {
-      text: "Hello World!",
-      user: "Charles",
-      added: new Date()
-    }
-  ];
-
   //route to display messages
   router.get('/', (req, res)=>{
     pool.query('SELECT * FROM messages ORDER BY timestamp DESC')
@@ -44,14 +31,22 @@ const messages = [
 });
   //display message details
 
-  router.get('/message/:id',(req,res)=>{
-    const message = messages[req.params.id];
-    if(message){
-      res.render('message', {title:"Message Details", message});
-    }else{
-      res.status(404).send('Message not found');
-    }
+  router.get('/message/:id', (req, res) => {
+    const messageId = req.params.id;
+  
+    pool.query('SELECT * FROM messages WHERE id = $1', [messageId])
+      .then(result => {
+        if (result.rows.length > 0) {
+          res.render('message', { title: "Message Details", message: result.rows[0] });
+        } else {
+          res.status(404).send('Message not found');
+        }
+      })
+      .catch(err => {
+        console.error("Error fetching message details:", err);
+        res.status(500).send('Internal Server Error');
+      });
   });
-
+  
 
   module.exports = router;

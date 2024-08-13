@@ -11,16 +11,16 @@
         <h1>Message Board</h1>
         <a href="/new" class="button">New Message</a>
         <ul>
-            <% messages.forEach((message) => { %>
-              <li>
+            <% messages.forEach((message, index) => { %>
+            <li>
                 <div>
-                  <strong><%= message.name %>:</strong> <%= message.message %> 
-                  <em>(<%= new Date(message.timestamp).toLocaleString() %>)</em>
+                    <strong><%= message.name %>:</strong> <%= message.message %> 
+                    <em>(<%= message.added.toLocaleString() %>)</em>
                 </div>
-              </li>
+                <a href="/message/<%= index %>" class="button">Open</a>
+            </li>
             <% }); %>
-          </ul>
-          
+        </ul>
     </div>
 </body>
 </html>

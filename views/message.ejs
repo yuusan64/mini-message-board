@@ -8,11 +8,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Message Details</h1>
-        <p><strong>User:</strong> <%= message.user %></p>
-        <p><strong>Message:</strong> <%= message.text %></p>
-        <p><strong>Date Added:</strong> <%= message.added.toLocaleString() %></p>
-        <a href="/" class="button">Back to Message Board</a>
+        <h1><%= message.name %>'s Message</h1>
+        <p><strong>Message:</strong> <%= message.message %></p>
+        <p><em>Posted on: <%= new Date(message.timestamp).toLocaleString() %></em></p>
+        <a href="/" class="button">Back to Messages</a>
     </div>
 </body>
 </html>
