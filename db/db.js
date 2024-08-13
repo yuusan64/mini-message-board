@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-const connectionString = process.env.DATABASE_URL ||'postgresql://postgres:ASJrPmZKcCzeNHHXlSrqfdqVWEcJbtIH@postgres.railway.internal:5432/railway';
+const connectionString = process.env.DATABASE_URL ||'postgresql://postgres:cYqERrsmZjTJvtFYYRnzYNBYMAsrwcgj@monorail.proxy.rlwy.net:14106/railway';
 
 const pool = new Pool({
  connectionString,
