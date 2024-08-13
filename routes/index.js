@@ -17,18 +17,15 @@ const pool = require('../db/db');
   });
 
   //handle form actions
-  router.post('/new', (req, res)=>{
-    console.log('Form submitted:', req.body);
+  router.post('/new', (req, res) => {
     const { name, message } = req.body;
     pool.query('INSERT INTO messages (name, message) VALUES ($1, $2)', [name, message])
       .then(() => {
         res.redirect('/');
       })
-      .catch(err => {
-        console.error("Error inserting message:", err);
-        res.status(500).send('Internal Server Error');
+      .catch(err => console.error("Error inserting message:", err));
   });
-});
+  
   //display message details
 
   router.get('/message/:id', (req, res) => {
