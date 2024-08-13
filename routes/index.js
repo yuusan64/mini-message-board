@@ -3,13 +3,13 @@ const router = express.Router();
 const pool = require('../db/db');
 
   //route to display messages
-  router.get('/', (req, res)=>{
+  router.get('/', (req, res) => {
     pool.query('SELECT * FROM messages ORDER BY timestamp DESC')
-    .then(result=>{
-    res.render('index', { title: "Mini Messageboard", messages });
-  })
-  .catch(err=>console.error("Error fetching messages:", err));
-});
+      .then(result => {
+        res.render('index', { title: "Mini Message-board", messages: result.rows });
+      })
+      .catch(err => console.error("Error fetching messages:", err));
+  });
 
   //display form
   router.get('/new', (req, res)=>{
