@@ -24,7 +24,7 @@ h1 {
     text-align: center;
 }
 
-ul {
+/* ul {
     list-style-type: none;
     padding: 0;
 }
@@ -51,7 +51,7 @@ button, a.button {
     text-decoration: none;
     display: inline-block;
     width: 8em;
-}
+} */
 
 button:hover, a.button:hover {
     background-color: #a4c4b4;
@@ -79,4 +79,49 @@ form button, a {
     font-size: 1.2em;
     width: 14em;
     align-self: center;
+}
+
+.new{
+  margin-bottom: 10px;
+}
+
+li {
+    background: #f9f9f9;
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li div {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+button, a.button {
+    display: block;
+    background-color: #786182;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    width: 8em;
+    /* Ensures the button doesn't grow */
+    flex-shrink: 0; 
+}
+
+button:hover, a.button:hover {
+    background-color: #a4c4b4;
 }
